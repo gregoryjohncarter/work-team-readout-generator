@@ -6,6 +6,7 @@ const Manager = require('./lib/Manager.js');
 const Engineer = require('./lib/Engineer.js');
 const Intern = require('./lib/Intern.js');
 
+// array of questions initially
 const initQuestions = [
     {
         type: 'input',
@@ -68,6 +69,7 @@ const initQuestions = [
     }
 ];
 
+// engineer questions
 const questionsPt2 = [
     {
         type: 'input',
@@ -135,8 +137,9 @@ const questionsPt2 = [
         choices: ['Engineer', 'Intern'],
         default: 0
       }
-]
+];
 
+// intern questions
 const questionsPt3 = [
     {
         type: 'input',
@@ -204,41 +207,43 @@ const questionsPt3 = [
         choices: ['Engineer', 'Intern'],
         default: 0
       }
-]
+];
 
-const promptUser1 = (initQuestions) => {
+const promptUser1 = (questions) => {
     console.log(`
     =================
     Generate a team profile
     =================
     `);
-    return inquirer.prompt(initQuestions);
+    return inquirer.prompt(questions);
 }
 
+// if adding more than 2 employees, see the return promptUser3 where the objective is to
+// separate userData for array of employees and userData 2 for successive prompts questions data
 const promptUser2 = userData => {
     if (!userData.employees) {
         userData.employees = [];
-        const manager = new Manager(userData.name, userData.id, userData.email, userData.officeNumber);
+        var manager = new Manager(userData.name, userData.id, userData.email, userData.officeNumber);
         userData.employees.push(manager);
     }
     if (userData.employeePrompt === "Engineer") {
         return inquirer.prompt(questionsPt2)
-        .then(userData => {
-            const engineer = new Engineer(userData.name, userData.id, userData.email, userData.gitHub);
+        .then(userData2 => {
+            var engineer = new Engineer(userData2.engName, userData2.engId, userData2.engEmail, userData2.engGitHub);
             userData.employees.push(engineer);
-                if (userData.confirmAddEmployee === true) {
-                   return promptUser3(userData);
+                if (userData2.confirmAddEmployee === true) {
+                   return promptUser3(userData, userData2);
                 } else {
                     return userData;
                 }
         });
     } else {
         return inquirer.prompt(questionsPt3)
-        .then(userData => {
-            const intern = new Intern(userData.name, userData.id, userData.email, userData.school);
+        .then(userData2 => {
+            var intern = new Intern(userData2.intName, userData2.intId, userData2.intEmail, userData2.intSchool);
             userData.employees.push(intern);
-                if (userData.confirmAddEmployee === true) {
-                    return promptUser3(userData);
+                if (userData2.confirmAddEmployee === true) {
+                    return promptUser3(userData, userData2);
                 } else {
                     return userData;
                 }
@@ -246,25 +251,26 @@ const promptUser2 = userData => {
     }
 };  
 
-const promptUser3 = userData => {
-    if (userData.employeePrompt2 === "Engineer") {
+// see userData / userData 2 above
+const promptUser3 = (userData, userData2) => {
+    if (userData2.employeePrompt2 === "Engineer") {
         return inquirer.prompt(questionsPt2)
-        .then(userData => {
-            const engineer = new Engineer(userData.name, userData.id, userData.email, userData.gitHub);
+        .then(userData2 => {
+            var engineer = new Engineer(userData2.engName, userData2.engId, userData2.engEmail, userData2.engGitHub);
             userData.employees.push(engineer);
-                if (userData.confirmAddEmployee === true) {
-                   return promptUser3(userData);
+                if (userData2.confirmAddEmployee === true) {
+                   return promptUser3(userData, userData2);
                 } else {
                     return userData;
                 }
         });
     } else {
         return inquirer.prompt(questionsPt3)
-        .then(userData => {
-            const intern = new Intern(userData.name, userData.id, userData.email, userData.school);
+        .then(userData2 => {
+            var intern = new Intern(userData2.intName, userData2.intId, userData2.intEmail, userData2.intSchool);
             userData.employees.push(intern);
-                if (userData.confirmAddEmployee === true) {
-                    return promptUser3(userData);
+                if (userData2.confirmAddEmployee === true) {
+                    return promptUser3(userData, userData2);
                 } else {
                     return userData;
                 }
@@ -308,7 +314,7 @@ const copyFile = () => {
   
 function init() {
     promptUser1(initQuestions)
-        .then(promptUser2(userData))
+        .then(promptUser2)
         .then(promptData => {
             return generateHTML(promptData);
         })

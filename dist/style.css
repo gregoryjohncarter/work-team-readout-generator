@@ -5,10 +5,9 @@
 
 .container {
     display: flex;
-    flex-wrap: wrap;
 }
 
 .card { 
-    flex: 0 33%;
-    
+    flex: 1 33%;
+    flex-wrap: wrap;
 }

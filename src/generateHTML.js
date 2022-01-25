@@ -5,14 +5,14 @@ const Intern = require("../lib/Intern");
 
 const mainContentMgr = projectsArr => {
     return `<div class="card" style="width: 18rem;">
-        <div class="card-header">
+        <div class="card-header bg-secondary">
         ${projectsArr.name}<br>
         <i class="cup"></i>${projectsArr.getRole()}
         </div>
         <div class="card-body">
             <ul class="list-group list-group-flush">
             <li class="list-group-item">ID: ${projectsArr.id}</li>
-            <li class="list-group-item">Email: ${projectsArr.email}</li>
+            <li class="list-group-item">${projectsArr.getEmail()}</li>
             <li class="list-group-item">${projectsArr.getOfficeNumber()}</li>
         </ul>
         </div>
@@ -21,14 +21,14 @@ const mainContentMgr = projectsArr => {
 
 const mainContentEng = projectsArr => {
     return `<div class="card" style="width: 18rem;">
-        <div class="card-header">
+        <div class="card-header bg-secondary">
         ${projectsArr.name}<br>
         <i class="eyeglasses"></i>${projectsArr.getRole()}
         </div>
         <div class="card-body">
             <ul class="list-group list-group-flush">
             <li class="list-group-item">ID: ${projectsArr.id}</li>
-            <li class="list-group-item">Email: ${projectsArr.email}</li>
+            <li class="list-group-item">${projectsArr.getEmail()}</li>
             <li class="list-group-item">${projectsArr.getGitHub()}</li>
         </ul>
         </div>
@@ -37,14 +37,14 @@ const mainContentEng = projectsArr => {
 
 const mainContentInt = projectsArr => {
     return `<div class="card" style="width: 18rem;">
-        <div class="card-header">
+        <div class="card-header bg-secondary">
         ${projectsArr.name}<br>
-        <i class="mortarboard">${projectsArr.getRole()}
+        <i class="mortarboard"></i>${projectsArr.getRole()}
         </div>
         <div class="card-body">
             <ul class="list-group list-group-flush">
             <li class="list-group-item">ID: ${projectsArr.id}</li>
-            <li class="list-group-item">Email: ${projectsArr.email}</li>
+            <li class="list-group-item">${projectsArr.getEmail()}</li>
             <li class="list-group-item">${projectsArr.getSchool()}</li>
         </ul>
         </div>
@@ -52,15 +52,17 @@ const mainContentInt = projectsArr => {
   }
 
 const mainContent = projectsArr => {
+    let html = '';
     for (let i = 0; i < projectsArr.length; i++) {
-        if (projectsArr[i].classList.contains(Manager)) {
-            mainContentMgr(projectsArr[i]);
-        } else if (projectsArr[i].classList.contains(Engineer)) {
-            mainContentEng(projectsArr[i]);
-        } else if (projectsArr[i].classList.contains(Intern)) {
-            mainContentInt(projectsArr[i]);
+        if (projectsArr[i].role === "Manager") {
+            html += mainContentMgr(projectsArr[i]);
+        } else if (projectsArr[i].role === "Engineer") {
+            html += mainContentEng(projectsArr[i]);
+        } else if (projectsArr[i].role === "Intern") {
+            html += mainContentInt(projectsArr[i]);
         }
     }
+    return html;
 }
 
 module.exports = data => { 
@@ -74,21 +76,21 @@ module.exports = data => {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet"> 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css"/>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.7.2/font/bootstrap-icons.min.css"/>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
         <link rel="stylesheet" href="style.css">
         <title>Team Readout</title>
     </head>
     <body>
-    <nav class="navbar navbar-light bg-light danger">
+    <nav class="navbar navbar-light bg-danger">
     <div class="container-fluid">
         <span class="navbar-brand mb-0 h1">My Team</span>
     </div>
     </nav>
     <div class='container'>
-    ${mainContent(data)}
+    ${mainContent(data.employees)}
     </div>
         
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"></script>
     </body>
     </html>`;
 }
