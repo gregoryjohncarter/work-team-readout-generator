@@ -13,3 +13,5 @@ To utilize this repository locally, clone it to your machine and then run 'npm i
 ## Demonstration Video
 
 <a href="https://drive.google.com/file/d/1iTc69UdPKYUuBRljpskOXY8oY0XEGKvW/view?usp=sharing" target="_blank">Link</a>
+
+<img src="./assets/teamreadout.png" width="500px" height="336px">
