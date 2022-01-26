@@ -1,11 +1,21 @@
 * {
     font-family: 'PT Sans', sans-serif;
-    font-size: 20px;
+    font-size: .95rem;
+}
+
+.bg-danger {
+    text-align: center;
 }
 
 .container {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    padding: 18px;
+}
+
+.container-fluid {
+    justify-content: center !important;
 }
 
 .card { 

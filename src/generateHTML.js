@@ -7,7 +7,7 @@ const mainContentMgr = projectsArr => {
     return `<div class="card" style="width: 18rem;">
         <div class="card-header bg-secondary">
         ${projectsArr.name}<br>
-        <i class="cup"></i>${projectsArr.getRole()}
+        <i class="material-icons">free_breakfast</i>${projectsArr.getRole()}
         </div>
         <div class="card-body">
             <ul class="list-group list-group-flush">
@@ -23,7 +23,7 @@ const mainContentEng = projectsArr => {
     return `<div class="card" style="width: 18rem;">
         <div class="card-header bg-secondary">
         ${projectsArr.name}<br>
-        <i class="eyeglasses"></i>${projectsArr.getRole()}
+        <i class="material-icons">description</i>${projectsArr.getRole()}
         </div>
         <div class="card-body">
             <ul class="list-group list-group-flush">
@@ -39,7 +39,7 @@ const mainContentInt = projectsArr => {
     return `<div class="card" style="width: 18rem;">
         <div class="card-header bg-secondary">
         ${projectsArr.name}<br>
-        <i class="mortarboard"></i>${projectsArr.getRole()}
+        <i class="material-icons">school</i>${projectsArr.getRole()}
         </div>
         <div class="card-body">
             <ul class="list-group list-group-flush">
@@ -76,7 +76,7 @@ module.exports = data => {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet"> 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css"/>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
         <link rel="stylesheet" href="style.css">
         <title>Team Readout</title>
     </head>

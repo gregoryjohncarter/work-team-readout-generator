@@ -9,3 +9,7 @@ Check the dist/ folder for your readout after running 'node Index.js' in the com
 ## Installation
 
 To utilize this repository locally, clone it to your machine and then run 'npm install inquirer' while navigated to the root directory.
+
+## Demonstration Video
+
+<a href="https://drive.google.com/file/d/1iTc69UdPKYUuBRljpskOXY8oY0XEGKvW/view?usp=sharing" target="_blank">Link</a>
